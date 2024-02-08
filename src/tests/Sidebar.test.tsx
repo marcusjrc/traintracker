@@ -16,9 +16,9 @@ describe('Sidebar', () => {
     fireEvent.click(liveTrackingMenuItem);
     const content = screen.getByTestId('sidebar-content');
     expect(content).toBeInTheDocument();
-    expect(content).toContain(screen.getByText(/Live tracking/))
+    expect(content).toContain(screen.getByText(/Live tracking/));
     fireEvent.click(reportsMenuItem);
-    expect(content).toContain(screen.getByText(/Reports/))
+    expect(content).toContain(screen.getByText(/Reports/));
     fireEvent.click(reportsMenuItem);
     expect(content).not.toBeInTheDocument();
   });
