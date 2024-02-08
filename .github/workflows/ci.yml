@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: 'npm'
       - run: npm ci
       - name: Run Linter & Formatter checks
@@ -26,7 +26,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: 'npm'
       - run: npm ci
       - name: Run tests
@@ -38,7 +38,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: 'npm'
       - run: npm ci
       - name: Build application

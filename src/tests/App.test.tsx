@@ -1,10 +1,14 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import App from '../App';
 
 describe('App', () => {
-  it('renders hello world', () => {
+  it('renders hello world', async () => {
     render(<App />);
-    const text = screen.getByText(/Hello World/i);
-    expect(text).toBeInTheDocument();
+    const loadingText = screen.getByText(/Loading/);
+    expect(loadingText).toBeInTheDocument();
+    await waitFor(() => {
+      const map = screen.queryByTestId('map-container');
+      return expect(map).toBeInTheDocument();
+    });
   });
 });
