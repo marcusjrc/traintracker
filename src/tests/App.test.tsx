@@ -2,7 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import App from '../App';
 
 describe('App', () => {
-  it('renders hello world', async () => {
+  it('renders map', async () => {
     render(<App />);
     const loadingText = screen.getByText(/Loading/);
     expect(loadingText).toBeInTheDocument();

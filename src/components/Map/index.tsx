@@ -12,9 +12,9 @@ interface MapProps {
 }
 
 enum TrainStatusColors {
-  NORMAL = 'green',
-  DELAYED = 'orange',
-  BROKEN = 'red',
+  NORMAL = '#22c55e',
+  DELAYED = '#f59e0b',
+  BROKEN = '#dc2626',
 }
 
 export default function Map({ markers }: MapProps) {

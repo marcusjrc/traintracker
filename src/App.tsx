@@ -9,9 +9,9 @@ const router = createBrowserRouter([
     Component: Dashboard,
   },
   {
-    path: "*",
-    Component: NotFound
-  }
+    path: '*',
+    Component: NotFound,
+  },
 ]);
 
 const queryClient = new QueryClient();
