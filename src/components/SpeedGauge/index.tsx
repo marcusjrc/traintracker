@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import { green, orange, red } from '../../utils/colors';
 
 interface SpeedGaugeProps {
   speed: number;
@@ -27,9 +28,9 @@ export default function SpeedGauge({ speed }: SpeedGaugeProps) {
       tickWidth: 1,
       minorTickInterval: null,
       stops: [
-        [0.1, '#55BF3B'], // green
-        [0.5, '#DDDF0D'], // yellow
-        [0.9, '#DF5353'], // red
+        [0.1, green],
+        [0.5, orange],
+        [0.9, red],
       ],
     },
     pane: {
@@ -64,10 +65,6 @@ export default function SpeedGauge({ speed }: SpeedGaugeProps) {
             baseWidth: 12,
             baseLength: '0%',
             rearLength: '0%',
-          },
-          color: '#333333',
-          style: {
-            fontSize: '14px',
           },
         },
       },

@@ -6,17 +6,13 @@ import { TrainData, TrainStatus } from '../../hooks/useTrainLocations';
 import trainIcon from '../../assets/train.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectMapInstance, setMapInstance } from '../../store/features/map/mapSlice';
+import { green, orange, red } from '../../utils/colors';
 
 const INITIAL_COORDINATES = [-2.36966957036279, 54.2379333607472];
+const INITIAL_ZOOM = 5.2;
 
 interface MapProps {
   markers: TrainData[];
-}
-
-enum TrainStatusColors {
-  NORMAL = '#22c55e',
-  DELAYED = '#f59e0b',
-  BROKEN = '#dc2626',
 }
 
 export default function Map({ markers }: MapProps) {
@@ -27,7 +23,7 @@ export default function Map({ markers }: MapProps) {
   const [lng, setLng] = useState(INITIAL_COORDINATES[0]);
   const [lat, setLat] = useState(INITIAL_COORDINATES[1]);
   const [mapLoaded, setMapLoaded] = useState(false);
-  const [zoom, setZoom] = useState(5.2);
+  const [zoom, setZoom] = useState(INITIAL_ZOOM);
 
   // initialise map container, user events & controls
   useEffect(() => {
@@ -79,12 +75,12 @@ export default function Map({ markers }: MapProps) {
               'match',
               ['get', 'status'],
               TrainStatus.NORMAL,
-              TrainStatusColors.NORMAL,
+              green,
               TrainStatus.DELAYED,
-              TrainStatusColors.DELAYED,
+              orange,
               TrainStatus.BROKEN,
-              TrainStatusColors.BROKEN,
-              TrainStatusColors.NORMAL,
+              red,
+              green,
             ],
           },
         });
