@@ -4,7 +4,6 @@ import useTrainLocations from '../../hooks/useTrainLocations';
 
 export default function Dashboard() {
   const { isLoading, isSuccess, isError, data } = useTrainLocations();
-
   return (
     <div>
       <Sidebar />

@@ -1,9 +1,10 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import Sidebar from '../components/Sidebar';
+import { renderWithProviders } from './renderProviders';
 
 describe('Sidebar', () => {
   it('renders Sidebar & content', async () => {
-    render(<Sidebar />);
+    renderWithProviders(<Sidebar />);
     const sidebar = screen.getByTestId('sidebar');
     expect(sidebar).toBeInTheDocument();
 
@@ -16,9 +17,9 @@ describe('Sidebar', () => {
     fireEvent.click(liveTrackingMenuItem);
     const content = screen.getByTestId('sidebar-content');
     expect(content).toBeInTheDocument();
-    expect(content).toContain(screen.getByText(/Live tracking/));
+    waitFor(() => expect(content).toContain(screen.getByText(/Live tracking/)));
     fireEvent.click(reportsMenuItem);
-    expect(content).toContain(screen.getByText(/Reports/));
+    waitFor(() => expect(content).toContain(screen.getByText(/Reports/)));
     fireEvent.click(reportsMenuItem);
     expect(content).not.toBeInTheDocument();
   });

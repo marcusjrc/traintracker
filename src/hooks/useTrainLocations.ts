@@ -12,6 +12,11 @@ export interface TrainData {
   lng: number;
   lat: number;
   status: TrainStatus;
+  journey: {
+    from: string;
+    to: string;
+    eta: Date;
+  };
 }
 
 export default function useTrainLocations() {

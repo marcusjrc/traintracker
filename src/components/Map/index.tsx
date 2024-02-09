@@ -4,6 +4,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoibWFyY3VzcmMiLCJhIjoiY2xzYnk2NThuMGppbTJsbzVta
 import { useEffect, useRef, useState } from 'react';
 import { TrainData, TrainStatus } from '../../hooks/useTrainLocations';
 import trainIcon from '../../assets/train.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectMapInstance, setMapInstance } from '../../store/features/map/mapSlice';
 
 const INITIAL_COORDINATES = [-2.36966957036279, 54.2379333607472];
 
@@ -20,6 +22,8 @@ enum TrainStatusColors {
 export default function Map({ markers }: MapProps) {
   const mapContainer = useRef(null);
   const map = useRef<mapboxgl.Map | null>(null);
+  const mapObj = useSelector(selectMapInstance);
+  const dispatch = useDispatch();
   const [lng, setLng] = useState(INITIAL_COORDINATES[0]);
   const [lat, setLat] = useState(INITIAL_COORDINATES[1]);
   const [mapLoaded, setMapLoaded] = useState(false);
@@ -34,6 +38,9 @@ export default function Map({ markers }: MapProps) {
       center: { lat, lng },
       zoom: zoom,
     });
+    if (!mapObj) {
+      dispatch(setMapInstance(map.current));
+    }
     map.current.on('move', () => {
       if (!map.current) return;
       setLng(map.current.getCenter().lng);

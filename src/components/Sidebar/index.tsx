@@ -1,26 +1,24 @@
-import { useState } from 'react';
 import mapImg from '../../assets/map.png';
 import reportImg from '../../assets/report.png';
 import classNames from 'classnames';
-
-enum MenuItemTypes {
-  LiveTracking = 'LiveTracking',
-  Reports = 'Reports',
-}
+import LiveTracker from '../LiveTracker';
+import { ContentTypes, selectActiveTab, setActiveTab } from '../../store/features/content/contentSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const MenuItems = [
   {
-    type: MenuItemTypes.LiveTracking,
+    type: ContentTypes.LiveTracking,
     logo: mapImg,
   },
   {
-    type: MenuItemTypes.Reports,
+    type: ContentTypes.Reports,
     logo: reportImg,
   },
 ];
 
 export default function Sidebar() {
-  const [activeItem, setActiveItem] = useState<MenuItemTypes | undefined>(undefined);
+  const activeItem = useSelector(selectActiveTab);
+  const dispatch = useDispatch();
 
   const menuItems = MenuItems.map((item, i) => (
     <li
@@ -29,7 +27,7 @@ export default function Sidebar() {
       className={classNames('mb-5 p-2 flex items-center justify-center cursor-pointer', {
         'bg-blue-200 rounded': activeItem === item.type,
       })}
-      onClick={() => (activeItem === item.type ? setActiveItem(undefined) : setActiveItem(item.type))}
+      onClick={() => (activeItem === item.type ? dispatch(setActiveTab(undefined)) : dispatch(setActiveTab(item.type)))}
     >
       <img width={20} src={item.logo} />
     </li>
@@ -50,11 +48,11 @@ export default function Sidebar() {
       {activeItem && (
         <div
           data-testid="sidebar-content"
-          className="py-5 px-3 shadow fixed left-[80px] top-5 z-50 bg-white h-[90%] min-w-[260px] sm:min-w-[300px] xs:max-w-[260px] sm:max-w-[400px] rounded-r-md border-r-solid border-r border-y-solid border-y border-y-gray-200 max-h-[700px]"
+          className="overflow-hidden py-5 shadow fixed left-[80px] top-5 z-50 bg-white h-[90%] min-w-[260px] sm:min-w-[300px] xs:max-w-[260px] sm:max-w-[400px] rounded-r-md border-r-solid border-r border-y-solid border-y border-y-gray-200 max-h-[700px]"
         >
-          {activeItem === MenuItemTypes.LiveTracking ? (
-            <div>Live tracking...</div>
-          ) : activeItem === MenuItemTypes.Reports ? (
+          {activeItem === ContentTypes.LiveTracking ? (
+            <LiveTracker />
+          ) : activeItem === ContentTypes.Reports ? (
             <div>Reports...</div>
           ) : null}
         </div>

@@ -4,6 +4,7 @@ import '@testing-library/jest-dom';
 import * as matchers from '@testing-library/jest-dom/matchers';
 import { server } from '../mocks/node';
 import '../mocks/mapbox-gl';
+import '../mocks/resize-observer';
 
 expect.extend(matchers);
 
