@@ -12,6 +12,7 @@ export interface TrainData {
   lng: number;
   lat: number;
   status: TrainStatus;
+  currentSpeed: number;
   journey: {
     from: string;
     to: string;

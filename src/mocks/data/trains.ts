@@ -7,6 +7,7 @@ export const trains: TrainData[] = [
     lat: -1.57991,
     lng: 53.79987,
     status: TrainStatus.NORMAL,
+    currentSpeed: 32,
     journey: {
       from: 'Manchester',
       to: 'Leeds',
@@ -18,6 +19,7 @@ export const trains: TrainData[] = [
     lat: -1.509622116417063,
     lng: 55.036557695836905,
     status: TrainStatus.NORMAL,
+    currentSpeed: 94,
     journey: {
       from: 'Newcastle',
       to: 'Edinburgh',
@@ -29,6 +31,7 @@ export const trains: TrainData[] = [
     lat: -0.23847191786023814,
     lng: 52.48693345402913,
     status: TrainStatus.BROKEN,
+    currentSpeed: 0,
     journey: {
       from: 'Edinburgh',
       to: 'London',
@@ -40,6 +43,7 @@ export const trains: TrainData[] = [
     lat: -0.6221458126328798,
     lng: 51.38973802143326,
     status: TrainStatus.NORMAL,
+    currentSpeed: 78,
     journey: {
       from: 'London',
       to: 'Plymouth',
@@ -51,6 +55,7 @@ export const trains: TrainData[] = [
     lat: -3.3326076447392836,
     lng: 51.640701112358386,
     status: TrainStatus.NORMAL,
+    currentSpeed: 52,
     journey: {
       from: 'Cardiff',
       to: 'Aberystwyth',
@@ -62,6 +67,7 @@ export const trains: TrainData[] = [
     lat: -2.707410950260396,
     lng: 54.75467743562737,
     status: TrainStatus.DELAYED,
+    currentSpeed: 50,
     journey: {
       from: 'Carlisle',
       to: 'Manchester',

@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import LiveTracker from '../LiveTracker';
 import { ContentTypes, selectActiveTab, setActiveTab } from '../../store/features/content/contentSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLayoutEffect, useRef } from 'react';
+import gsap from 'gsap';
 
 const MenuItems = [
   {
@@ -17,8 +19,18 @@ const MenuItems = [
 ];
 
 export default function Sidebar() {
+  const sideBarContentRef = useRef<HTMLDivElement>(null);
   const activeItem = useSelector(selectActiveTab);
   const dispatch = useDispatch();
+
+  useLayoutEffect(() => {
+    if (activeItem) {
+      gsap.from(sideBarContentRef.current, {
+        left: 10,
+        duration: 0.5,
+      });
+    }
+  }, [activeItem]);
 
   const menuItems = MenuItems.map((item, i) => (
     <li
@@ -47,8 +59,9 @@ export default function Sidebar() {
       </div>
       {activeItem && (
         <div
+          ref={sideBarContentRef}
           data-testid="sidebar-content"
-          className="overflow-hidden py-5 shadow fixed left-[80px] top-5 z-50 bg-white h-[90%] min-w-[260px] sm:min-w-[300px] xs:max-w-[260px] sm:max-w-[400px] rounded-r-md border-r-solid border-r border-y-solid border-y border-y-gray-200 max-h-[700px]"
+          className="sidebar-content overflow-hidden py-5 shadow fixed left-[80px] top-5 z-40 bg-white h-[90%] min-w-[260px] sm:min-w-[300px] xs:max-w-[260px] sm:max-w-[400px] rounded-r-md border-r-solid border-r border-y-solid border-y border-y-gray-200 max-h-[700px]"
         >
           {activeItem === ContentTypes.LiveTracking ? (
             <LiveTracker />

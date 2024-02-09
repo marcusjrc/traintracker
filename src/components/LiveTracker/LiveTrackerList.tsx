@@ -50,6 +50,7 @@ export default function LiveTrackerList({ items }: LiveTrackerList) {
             >
               {vItems.map((vItem) => (
                 <div
+                  data-index={vItem.index}
                   data-testid={`vitem-${vItem.index}`}
                   onClick={() => onClick(items[vItem.index])}
                   ref={virtualizer.measureElement}

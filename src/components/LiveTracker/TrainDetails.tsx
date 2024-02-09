@@ -3,13 +3,14 @@ import { TrainData } from '../../hooks/useTrainLocations';
 import StatusBadge from '../StatusBadge';
 import { formatDuration, intervalToDuration } from 'date-fns';
 import { useMemo } from 'react';
+import SpeedGauge from '../SpeedGauge';
 
 interface TrainDetailsProps {
   data: TrainData;
   goBack?: () => void;
 }
 
-export default function TrainDetails({ data: { status, id, journey }, goBack }: TrainDetailsProps) {
+export default function TrainDetails({ data: { currentSpeed, status, id, journey }, goBack }: TrainDetailsProps) {
   const etaString = useMemo(
     () =>
       formatDuration(
@@ -43,6 +44,10 @@ export default function TrainDetails({ data: { status, id, journey }, goBack }: 
           <p>To: {journey.to}</p>
           <p>ETA: {etaString}</p>
         </div>
+      </div>
+      <div className="px-5 mt-5 border-b pb-5">
+        <div>Current speed</div>
+        <SpeedGauge speed={currentSpeed} />
       </div>
     </div>
   );
